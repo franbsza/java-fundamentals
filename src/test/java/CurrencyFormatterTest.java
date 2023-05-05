@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
@@ -22,5 +23,27 @@ public class CurrencyFormatterTest {
 
         String currency = currencyFormatter.formatLocale(number, local);
         Assertions.assertEquals(expected, currency);
+    }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = '|', value = {
+            "59800  | 59.800",
+            "98000  | 98.000",
+            "1000   | 1.000",
+            "989000 |  989.000",
+            "42000  | 42.000"})
+    @DisplayName("parse currency to another locale")
+    public void executeTestTwo(String dest, String expected)  {
+
+        String currency = currencyFormatter.convertBetweenLocales(dest);
+        Assertions.assertEquals(expected, currency);
+    }
+
+    @Test
+    @DisplayName("test exception in parse currency to another locale")
+    public void executeTestThree() {
+        String input = "R$59,800.00";
+       String errorMessage = currencyFormatter.convertBetweenLocales(input);
+       Assertions.assertEquals("Unparseable number: \"R$59,800.00\"", errorMessage);
     }
 }
