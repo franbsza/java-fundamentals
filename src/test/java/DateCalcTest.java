@@ -12,11 +12,11 @@ public class DateCalcTest {
 
     @Test
     public void executeTestDays(){
-        LocalDate init = LocalDate.now();
-        LocalDate end = LocalDate.of(2024, 8,6);
+        LocalDate init = LocalDate.of(2023, 5, 5);
+        LocalDate end = LocalDate.of(2024, 8,15);
         int days = dateCalc.differenceOfDaysBetweenDates(init, end);
 
-        Assertions.assertEquals(2, days);
+        Assertions.assertEquals(10, days);
     }
 
     @Test
