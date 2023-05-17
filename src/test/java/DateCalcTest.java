@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import utilities.DateCalc;
@@ -9,10 +10,15 @@ public class DateCalcTest {
 
     @InjectMocks
     DateCalc dateCalc = new DateCalc();
+    LocalDate init;
+
+    @BeforeEach
+    void setup(){
+        init = LocalDate.of(2023, 5, 5);
+    }
 
     @Test
     public void executeTestDays(){
-        LocalDate init = LocalDate.of(2023, 5, 5);
         LocalDate end = LocalDate.of(2024, 8,15);
         int days = dateCalc.differenceOfDaysBetweenDates(init, end);
 
@@ -21,7 +27,6 @@ public class DateCalcTest {
 
     @Test
     public void executeTestMonths(){
-        LocalDate init = LocalDate.now();
         LocalDate end = LocalDate.of(2024, 8,6);
         int months = dateCalc.differenceOfMonthsBetweenDates(init, end);
 
@@ -30,7 +35,6 @@ public class DateCalcTest {
 
     @Test
     public void executeTestYears(){
-        LocalDate init = LocalDate.now();
         LocalDate end = LocalDate.of(2024, 8,6);
         int years = dateCalc.differenceOfYearsBetweenDates(init, end);
 
