@@ -17,9 +17,9 @@ https://learning.oreilly.com/library/view/java-challenges-100/9781484273951/
 - Learn Java Unit Testing with JUnit 5 in 20 Steps
 https://learning.oreilly.com/videos/learn-java-unit/9781789340648/
 
-- Advanced Java Development
-https://www.linkedin.com/learning-login/share?forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fadvanced-java-development%3Ftrk%3Dshare_ent_url%26shareId%3DNqhmuNXDTFi0O%252B3RoUeUZA%253D%253D
+- Course Advanced Java Development (Linkedin)
+https://l1nk.dev/wgCzG 
 
-- Java: Lambdas and Streams
-https://www.linkedin.com/learning-login/share?forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fjava-lambdas-and-streams%3Ftrk%3Dshare_ent_url%26shareId%3DQ7iI36w7RjGf%252FJXyZmOUlw%253D%253D
+- Course Java: Lambdas and Streams (Linkedin)
+https://l1nk.dev/bfnQK 
 
