@@ -1,12 +1,11 @@
-import operators.StorePaint;
+package operators;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.InjectMocks;
 
 public class StorePaintTest {
 
-    @InjectMocks
     StorePaint storePaint = new StorePaint();
 
     @ParameterizedTest

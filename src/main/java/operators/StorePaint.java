@@ -13,21 +13,21 @@ public class StorePaint {
      * necessary to given area considering that
      * each liters of paint cover 6m2 of area
      */
-    public double calculateLitersOfPaint(double area){
+    double calculateLitersOfPaint(double area){
         return Math.ceil(area / 6) ;
     }
 
     //calculate how much cans SMALL will be necessary given the area
-    public double calcCanBig(double litres){
+    double calcCanBig(double litres){
         return litres / YIELD_B;
     }
 
     //calculate how much cans SMALL will be necessary given the area
-    public double calcCanSmall(double litres){
+    double calcCanSmall(double litres){
         return Math.ceil(litres / YIELD_S);
     }
 
-    public double calcPrice(double can, char size){
+    double calcPrice(double can, char size){
         double price;
 
         if(size == 'S'){
@@ -43,7 +43,7 @@ public class StorePaint {
     //2 scenario: buy only big cans
     //3 scenario: buy mixing big cans and small
     // To finish check the most advantageous price
-    public double optimizeSpend(double area){
+    double optimizeSpend(double area){
         double bestPrice;
         double litres = calculateLitersOfPaint(area);
 
@@ -72,9 +72,5 @@ public class StorePaint {
         }
         System.out.println(bestPrice);
         return bestPrice;
-    }
-
-    public static void main(String[] args){
-//        otimizeSpend(250);
     }
 }

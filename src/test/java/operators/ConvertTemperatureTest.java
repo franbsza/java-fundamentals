@@ -1,10 +1,9 @@
-import operators.ConvertTemperature;
+package operators;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 
 public class ConvertTemperatureTest {
-    @InjectMocks
     ConvertTemperature convertTemperature = new ConvertTemperature();
 
     @Test
