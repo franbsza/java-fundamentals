@@ -11,7 +11,7 @@ public abstract class Client {
         this.name = name;
     }
 
-    public abstract void getGrettings();
+    public abstract String getType();
 
     public abstract boolean isValidIDNumber();
 }

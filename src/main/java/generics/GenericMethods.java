@@ -1,5 +1,6 @@
 package generics;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,17 +17,20 @@ public class GenericMethods {
         return clientList;
     }
 
-    public void checkAllTypeClients(List<? extends Client> clients){
-
+    public List<String> checkAllTypeClients(List<? extends Client> clients){
+        List<String> types = new ArrayList<>();
         for(Client client: clients){
-            client.getGrettings();
+            types.add(client.getType());
         }
+        return types;
     }
 
-    public void checkValidIdNumber(List<? extends Client> clients){
+    public boolean checkValidIdNumber(List<? extends Client> clients){
 
         for(Client client: clients){
-            System.out.println(client.isValidIDNumber());
+           if(!client.isValidIDNumber())
+               throw new IllegalArgumentException("Invalid ID for client: "+client.getName());
         }
+        return true;
     }
 }
