@@ -1,4 +1,6 @@
-package functional.programming.challenge;
+package functional.programming.employee;
+import functional.programming.challenge.employee.Employee;
+import functional.programming.challenge.employee.EmployeeUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,39 +24,38 @@ class EmployeeUtilsTest {
     @BeforeEach
     void setup(){
         manager = new Employee();
-        manager.setJobTitle("CEO");
 
         manager1 = new Employee();
         manager1.setFirstName("Roger");
         manager1.setLastName("Westbay");
-        manager1.setJobTitle("HR Director");
         manager1.setManager(manager);
         manager1.setDepartment("HR");
+        manager1.setSalary(12000.0);
 
         manager2 = new Employee();
         manager2.setFirstName("Sueli");
         manager2.setLastName("Barros");
-        manager2.setJobTitle("IT TeamLeader");
         manager2.setManager(manager);
         manager2.setDepartment("IT");
+        manager2.setSalary(15000.0);
 
         employee = new Employee();
         employee.setFirstName("Jerome");
         employee.setLastName("Donaldson");
         employee.setYearsOfService(20);
         employee.setNumberOfDirectReports(5);
-        employee.setJobTitle("HeadHunter I");
         employee.setManager(manager1);
         employee.setDepartment("HR");
+        employee.setSalary(9000.0);
 
         employee2 = new Employee();
         employee2.setFirstName("Celeste");
         employee2.setLastName("Pattison");
         employee2.setYearsOfService(1);
         employee2.setNumberOfDirectReports(3);
-        employee2.setJobTitle("Developer II");
         employee2.setManager(manager2);
         employee2.setDepartment("IT");
+        employee2.setSalary(9000.0);
 
         employees = Arrays.asList(manager1, manager2, employee, employee2);
     }
@@ -76,7 +77,7 @@ class EmployeeUtilsTest {
     @Test
     @DisplayName("should return false when employee has been employed longer than five years")
     void employeeInEmploymentLongerThanFiveYears() {
-        Boolean actual = employeeUtils.hasBeenEmployedLongerThanFiveYears(employee);
+        boolean actual = employeeUtils.hasBeenEmployedLongerThanFiveYears(employee);
         assertTrue(actual);
     }
 
@@ -84,14 +85,14 @@ class EmployeeUtilsTest {
     @DisplayName("should return false when employee has been employed less than five years")
     void employeeInEmploymentLessThanFiveYears() {
         employee.setYearsOfService(3);
-        Boolean actual = employeeUtils.hasBeenEmployedLongerThanFiveYears(employee);
+        boolean actual = employeeUtils.hasBeenEmployedLongerThanFiveYears(employee);
         assertFalse(actual);
     }
 
     @Test
     @DisplayName("should return false when employee has more than three direct reports")
     void employeeHasMoreThanThreeDirectReports() {
-        Boolean actual = employeeUtils.hasMoreThanThreeDirectReports(employee);
+        boolean actual = employeeUtils.hasMoreThanThreeDirectReports(employee);
         assertTrue(actual);
     }
 
@@ -99,7 +100,7 @@ class EmployeeUtilsTest {
     @DisplayName("should return false when employee has less than three direct reports")
     void employeeHasLessThanThreeDirectReports() {
         employee.setNumberOfDirectReports(1);
-        Boolean actual = employeeUtils.hasMoreThanThreeDirectReports(employee);
+        boolean actual = employeeUtils.hasMoreThanThreeDirectReports(employee);
         assertFalse(actual);
     }
 
@@ -107,7 +108,7 @@ class EmployeeUtilsTest {
     @DisplayName("should return true when employee who has more than three years of service and less than two direct reports")
     void employeeHasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports() {
         employee.setNumberOfDirectReports(1);
-        Boolean actual = employeeUtils.hasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports(employee);
+        boolean actual = employeeUtils.hasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports(employee);
         assertTrue(actual);
     }
 
@@ -115,7 +116,7 @@ class EmployeeUtilsTest {
     @DisplayName("should return false when employee who has more than three years of service and more than two direct reports")
     void employeeHasMoreThanThreeYearsOfServiceAndMoreThanTwoDirectReports() {
 
-        Boolean actual = employeeUtils.hasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports(employee);
+        boolean actual = employeeUtils.hasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports(employee);
 
         assertAll("employee",
                 () -> assertTrue(employee.getYearsOfService() > 3),
@@ -138,5 +139,11 @@ class EmployeeUtilsTest {
                 () -> assertEquals(mapResult.keySet(), groupedEmployees.keySet()),
                 () -> assertEquals(mapResult, groupedEmployees)
                 );
+    }
+
+    @Test
+    @DisplayName("should return the employees's average salary")
+    void getAverageSalary(){
+       assertEquals(11250.0, employeeUtils.getAverageSalary(employees));
     }
 }

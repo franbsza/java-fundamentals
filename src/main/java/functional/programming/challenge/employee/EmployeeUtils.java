@@ -1,4 +1,4 @@
-package functional.programming.challenge;
+package functional.programming.challenge.employee;
 
 import java.util.List;
 import java.util.Map;
@@ -37,5 +37,12 @@ public class EmployeeUtils {
                 Collectors.groupingBy(
                         Employee::getDepartment,
                         Collectors.mapping(Employee::getFirstName, Collectors.toList())));
+    }
+
+    public Double getAverageSalary(List<Employee> employees){
+        return employees.stream()
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .getAsDouble();
     }
 }
