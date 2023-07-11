@@ -1,7 +1,10 @@
 package functional.programming.challenge;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class EmployeeUtils {
     public String getFullName(Employee employee) {
@@ -27,5 +30,12 @@ public class EmployeeUtils {
     public boolean hasMoreThanThreeYearsOfServiceAndLessThanTwoDirectReports(Employee employee) {
         Predicate<Employee> moreThanThreeYearsOfServiceAndLessThanTwoDirectReports = e -> e.getYearsOfService() > 3 && e.getNumberOfDirectReports() < 2;
         return moreThanThreeYearsOfServiceAndLessThanTwoDirectReports.test(employee);
+    }
+
+    public Map<String, List<String>> groupByDepartment(List<Employee> employees){
+        return employees.stream().collect(
+                Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.mapping(Employee::getFirstName, Collectors.toList())));
     }
 }

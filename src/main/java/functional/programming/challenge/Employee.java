@@ -3,6 +3,8 @@ package functional.programming.challenge;
 public class Employee {
     private String firstName;
     private String lastName;
+    private String jobTitle;
+    private String department;
     private int yearsOfService;
     private Employee manager;
     private int numberOfDirectReports;
@@ -45,5 +47,21 @@ public class Employee {
 
     public void setNumberOfDirectReports(int numberOfDirectReports) {
         this.numberOfDirectReports = numberOfDirectReports;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
