@@ -9,20 +9,14 @@ public class CurrentSalary {
         Calendar cal = Calendar.getInstance();
         int years = cal.get(Calendar.YEAR) - entryYear;
 
-        double currentSalary = 0;
-        double increase = 0;
+        double increase = 0.015;
+        double currentSalary = salary *  (1 + increase);
 
-        for (int i=1; i <= years; i++){
 
-            if(i == 1){
-                increase = 0.015;
-                currentSalary = salary *  (1 + increase);
-            }
-            else {
+        for (int i=2; i <= years; i++){
                 increase = increase * 2;
                 currentSalary = currentSalary *  (1 + increase);
-            }
         }
-        return new BigDecimal(currentSalary).setScale(2, RoundingMode.HALF_EVEN);
+        return BigDecimal.valueOf(currentSalary).setScale(2, RoundingMode.HALF_EVEN);
     }
 }
