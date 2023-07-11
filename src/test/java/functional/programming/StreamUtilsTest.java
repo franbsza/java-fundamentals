@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StreamUtilsTest {
+class StreamUtilsTest {
 
     StreamUtils streamUtils = new StreamUtils();
     List<String> list;
