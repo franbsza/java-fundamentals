@@ -40,9 +40,8 @@ public class EmployeeUtils {
     }
 
     public Double getAverageSalary(List<Employee> employees){
-        return employees.stream()
+        return Math.ceil(employees.stream()
                 .mapToDouble(Employee::getSalary)
-                .average()
-                .getAsDouble();
+                .average().orElse(0.0));
     }
 }

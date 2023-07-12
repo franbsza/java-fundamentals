@@ -1,63 +1,32 @@
-package functional.programming.employee;
-import functional.programming.challenge.employee.Employee;
-import functional.programming.challenge.employee.EmployeeUtils;
+package functional.programming.challenge.employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeUtilsTest {
     private EmployeeUtils employeeUtils = new EmployeeUtils();
     Employee employee;
-    Employee employee2;
     Employee manager;
-    Employee manager1;
-    Employee manager2;
-    List<Employee> employees;
 
     @BeforeEach
     void setup(){
         manager = new Employee();
-
-        manager1 = new Employee();
-        manager1.setFirstName("Roger");
-        manager1.setLastName("Westbay");
-        manager1.setManager(manager);
-        manager1.setDepartment("HR");
-        manager1.setSalary(12000.0);
-
-        manager2 = new Employee();
-        manager2.setFirstName("Sueli");
-        manager2.setLastName("Barros");
-        manager2.setManager(manager);
-        manager2.setDepartment("IT");
-        manager2.setSalary(15000.0);
+        manager.setLastName("Westbay");
 
         employee = new Employee();
         employee.setFirstName("Jerome");
         employee.setLastName("Donaldson");
         employee.setYearsOfService(20);
         employee.setNumberOfDirectReports(5);
-        employee.setManager(manager1);
         employee.setDepartment("HR");
         employee.setSalary(9000.0);
-
-        employee2 = new Employee();
-        employee2.setFirstName("Celeste");
-        employee2.setLastName("Pattison");
-        employee2.setYearsOfService(1);
-        employee2.setNumberOfDirectReports(3);
-        employee2.setManager(manager2);
-        employee2.setDepartment("IT");
-        employee2.setSalary(9000.0);
-
-        employees = Arrays.asList(manager1, manager2, employee, employee2);
+        employee.setManager(manager);
     }
 
     @Test
@@ -126,10 +95,11 @@ class EmployeeUtilsTest {
     }
 
 
-    @Test
-    @DisplayName("should return a map of employees grouping by manager")
-    void groupByDepartment(){
+    @ParameterizedTest(name = "should return a map of employees grouping by manager")
+    @ArgumentsSource(EmployeesListProvider.class)
+    void groupByDepartment(List<Employee> employees){
         Map<String, List<String>> mapResult = new HashMap<>();
+        mapResult.put("Finances", Arrays.asList("Patty", "Maria"));
         mapResult.put("HR", Arrays.asList("Roger", "Jerome"));
         mapResult.put("IT", Arrays.asList("Sueli", "Celeste"));
 
@@ -141,9 +111,10 @@ class EmployeeUtilsTest {
                 );
     }
 
-    @Test
-    @DisplayName("should return the employees's average salary")
-    void getAverageSalary(){
-       assertEquals(11250.0, employeeUtils.getAverageSalary(employees));
+    @ParameterizedTest(name = "should return the employees's average salary")
+    @ArgumentsSource(EmployeesListProvider.class)
+    void getAverageSalary(List<Employee> employees){
+        Double actual = employeeUtils.getAverageSalary(employees);
+        assertEquals(12334.0, actual);
     }
 }
