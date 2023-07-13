@@ -53,24 +53,16 @@ public class StorePaint {
         double cansB = calcCanBig(litres);
         double priceBTemp = calcPrice(Math.ceil(cansB) , 'B');
 
+        bestPrice = Math.min(priceSTemp, priceBTemp);
 
-        if(priceSTemp < priceBTemp){
-            bestPrice = priceSTemp;
-        }
-        else{
-            BigDecimal bigDecimal = new BigDecimal(cansB);
-            BigDecimal cansInt = new BigDecimal(bigDecimal.intValue());
-            double cansDecimal = bigDecimal.subtract(cansInt).doubleValue();
-            cansS = Math.ceil(cansDecimal * YIELD_B / YIELD_S) ;
+        BigDecimal bigDecimal = BigDecimal.valueOf(cansB);
+        BigDecimal cansInt = new BigDecimal(bigDecimal.intValue());
+        double cansDecimal = bigDecimal.subtract(cansInt).doubleValue();
+        cansS = Math.ceil(cansDecimal * YIELD_B / YIELD_S) ;
 
-            double priceB = calcPrice(cansInt.intValue(), 'B');
-            double priceS = calcPrice(cansS , 'S');
+        double priceB = calcPrice(cansInt.intValue(), 'B');
+        double priceS = calcPrice(cansS , 'S');
 
-            double totalPriceTemp = priceB + priceS;
-            bestPrice = Math.min(totalPriceTemp, priceBTemp);
-
-        }
-        System.out.println(bestPrice);
-        return bestPrice;
+        return Math.min(priceB + priceS, bestPrice);
     }
 }
