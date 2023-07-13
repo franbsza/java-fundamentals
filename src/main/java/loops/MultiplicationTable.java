@@ -1,13 +1,16 @@
 package loops;
 
+import java.util.stream.IntStream;
+
 public class MultiplicationTable {
 
     public static void buildTableText(int factor){
-        System.out.println("Multiplication Table Of "+ factor);
+        System.out.println("Multiplication Table of"+ factor);
 
-        for(int i = 0 ; i <= 10 ; i++ ){
-            System.out.println(factor +" x " + i + " = " + factor * i);
-        }
+        IntStream.range(1,11)
+                .forEach(n ->
+                System.out.println(factor +" x " + n + " = " + factor * n)
+            );
     }
 
     public static void main(String[] args){
