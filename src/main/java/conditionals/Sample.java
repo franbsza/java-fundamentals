@@ -2,10 +2,7 @@ package conditionals;
 
 public class Sample {
 
-    public boolean verificaDivisaoExata(int num, int divisor){
-        if(num % divisor == 0){
-            return true;
-        }
-        return false;
+    public boolean checkEvenDivision(int num, int divisor){
+        return (num % divisor == 0);
     }
 }
